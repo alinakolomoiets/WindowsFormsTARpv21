@@ -15,6 +15,10 @@ namespace WindowsFormsTARpv21
         TreeView puu;
         Button nupp;
         Label silt;
+        CheckBox mruut1, mruut2;
+        RadioButton rnupp1,rnupp2,rnupp3,rnupp4;
+        PictureBox pilt;
+        ProgressBar riba;
         public MinaOmaVorm()
         {
             Height = 600;
@@ -27,6 +31,9 @@ namespace WindowsFormsTARpv21
             oksad.Nodes.Add( new TreeNode("Nupp-Button"));
             oksad.Nodes.Add(new TreeNode("Silt-Label"));
             oksad.Nodes.Add(new TreeNode("Dialog aken-MessageBox"));
+            oksad.Nodes.Add(new TreeNode("Märkeruut-Checkbox"));
+            oksad.Nodes.Add(new TreeNode("Radionupp-Radiobutton"));
+            oksad.Nodes.Add(new TreeNode("Edenemisriba-ProgressBar"));
 
 
             puu.AfterSelect += Puu_AfterSelect;
@@ -34,7 +41,30 @@ namespace WindowsFormsTARpv21
             this.Controls.Add(puu);
         }
         private void Puu_AfterSelect(object sender , TreeViewEventArgs e)
-        {
+        { 
+            silt = new Label
+            {
+                Text = "Minu esimine vorm",
+                Size = new Size(200, 50),
+                Location = new Point(200, 0)
+            };
+            mruut1 = new CheckBox
+                {
+                    Checked = false,
+                    Text="Üks",
+                    Location = new Point(silt.Left+silt.Width,0),
+                    Width = 100,
+                    Height=25,
+                  
+                };
+            mruut2 = new CheckBox
+                {
+                    Checked = false,
+                    Text = "Kaks",
+                    Location = new Point(silt.Left + silt.Width, mruut1.Height),
+                    Width = 100,
+                    Height = 25
+                };
             if(e.Node.Text == "Nupp-Button")
             {
                 nupp=new Button();
@@ -47,12 +77,7 @@ namespace WindowsFormsTARpv21
             }
             else if (e.Node.Text == "Silt-Label")
             {
-                silt = new Label
-                {
-                    Text = "Minu esimine vorm",
-                    Size = new Size(200, 50),
-                    Location = new Point(200, 0)
-                };
+               
                 silt.MouseEnter += Silt_MouseEnter;
                 silt.MouseLeave += Silt_MouseLeave;
 
@@ -71,8 +96,124 @@ namespace WindowsFormsTARpv21
                     MessageBox.Show("Töötavad");
                 }
             }
+            else if(e.Node.Text == "Märkeruut-Checkbox")
+            {
+               
 
+                mruut1.CheckedChanged += new EventHandler(Mruut_1_2Changed);
+                mruut2.CheckedChanged += new EventHandler(Mruut_1_2Changed);
+                this.Controls.Add(mruut1);
+                this.Controls.Add(mruut2);
+            }
+            if (e.Node.Text == "Radionupp-Radiobutton")
+            {
+                rnupp1 = new RadioButton
+                {
+                    Text = "Paremale",
+                    Width = 112,
+                    Location = new Point(mruut2.Left + mruut2.Width, mruut1.Height + mruut2.Height),
+                };
+                rnupp2 = new RadioButton
+                {
+                    Text = "Vasakule",
+                    Width = 112,
+                    Location = new Point(mruut2.Left + mruut2.Width+rnupp1.Width, mruut1.Height + mruut2.Height),
+                };
+                rnupp3 = new RadioButton
+                {
+                    Text = "Ülesse",
+                    Width = 112,
+                    Location = new Point(mruut2.Left + mruut2.Width+ rnupp1.Width+rnupp2.Width, mruut1.Height + mruut2.Height),
+                };
+                rnupp4 = new RadioButton
+                {
+                    Text = "Alla",
+                    Width = 112,
+                    Location = new Point(mruut2.Left + mruut2.Width+ rnupp1.Width+ rnupp2.Width+ rnupp3.Width, mruut1.Height + mruut2.Height),
+                };
+                pilt = new PictureBox
+                {
+                    Image =new Bitmap("images.jpg"),
+                    Location=new Point(300,450),
+                    Size = new Size(100,100),
+                    SizeMode = PictureBoxSizeMode.StretchImage
+                };
+                rnupp1.CheckedChanged += new EventHandler(Rnuppud_Changed);
+                rnupp2.CheckedChanged += new EventHandler(Rnuppud_Changed);
+                rnupp3.CheckedChanged += new EventHandler(Rnuppud_Changed);
+                rnupp4.CheckedChanged += new EventHandler(Rnuppud_Changed);
+                this.Controls.Add(rnupp1);
+                this.Controls.Add(rnupp2);
+                this.Controls.Add(rnupp3);
+                this.Controls.Add(rnupp4);
+                this.Controls.Add(pilt);
+            }
+            else if (e.Node.Text== "Edenemisriba-ProgressBar")
+            {
+                riba = new ProgressBar
+                {
+                    Width = 400,
+                    Height = 30,
+                    Location = new Point(350,500),
+                    Value = 0,
+                    Minimum=0,
+                    Maximum=100,
+                    Step=1,
+                    //Dock = DockStyle.Bottom
+                };
+                aeg= new Timer();
+                aeg.Enabled = true;
+                aeg.Tick += Aeg_Tick;
+                this.Controls.Add(riba);
+            }
         }
+        private void Aeg_Tick(object sender, EventArgs e)
+        {
+            riba.PerformStep();
+        }
+        private void Rnuppud_Changed(object sender, EventArgs e)
+        {
+            if(rnupp1.Checked)
+            {
+               pilt.Location= new Point(pilt.Left +10 , pilt.Top);
+                rnupp1.Checked= false; 
+            }
+            if (rnupp2.Checked)
+            {
+                pilt.Location = new Point(pilt.Left - 10, pilt.Top);
+                rnupp2.Checked = false;
+            }
+            if (rnupp3.Checked)
+            {
+                pilt.Location = new Point(pilt.Left , pilt.Top +10);
+                rnupp3.Checked = false;
+            }
+            if (rnupp4.Checked)
+            {
+                pilt.Location = new Point(pilt.Left , pilt.Top - 10);
+                rnupp4.Checked = false;
+            }
+        }
+        private void Mruut_1_2Changed(object sender, EventArgs e)
+        {
+            if (mruut1.Checked == true && mruut2.Checked == true)
+            {
+                var vastus = MessageBox.Show("Hea valik");
+            }
+            else if (mruut1.Checked == true && mruut2.Checked == false)
+            {
+                var vastus = MessageBox.Show("Kas olete kindel , et peate");
+            }
+            else if (mruut1.Checked== false && mruut2.Checked == true)
+            {
+                var vastus = MessageBox.Show("Kas olete kindel , et peate");
+            }
+            else if (mruut1.Checked==false&&mruut2.Checked == false)
+            {
+                var vastus = MessageBox.Show("Head päeva");
+            }
+        }
+
 
         private void Silt_MouseLeave(object sender, EventArgs e)
         {

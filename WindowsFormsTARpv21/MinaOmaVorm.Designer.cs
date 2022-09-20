@@ -10,6 +10,11 @@ namespace WindowsFormsTARpv21
         private System.ComponentModel.IContainer components = null;
         private EventHandler MinaOmaVorm_Load;
 
+        public MinaOmaVorm(EventHandler minaOmaVorm_Load)
+        {
+            MinaOmaVorm_Load = minaOmaVorm_Load;
+        }
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
