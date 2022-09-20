@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsTARpv21", "WindowsFormsTARpv21\WindowsFormsTARpv21.csproj", "{FB7A591C-663E-4E30-9ABE-4FD9A4B308AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB7A591C-663E-4E30-9ABE-4FD9A4B308AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7A591C-663E-4E30-9ABE-4FD9A4B308AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7A591C-663E-4E30-9ABE-4FD9A4B308AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7A591C-663E-4E30-9ABE-4FD9A4B308AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67C5BF15-AF7C-444B-A26C-FA71134E63D2}
+	EndGlobalSection
+EndGlobal
