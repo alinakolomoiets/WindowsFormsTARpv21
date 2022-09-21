@@ -19,6 +19,8 @@ namespace WindowsFormsTARpv21
         RadioButton rnupp1,rnupp2,rnupp3,rnupp4;
         PictureBox pilt;
         ProgressBar riba;
+        Timer aeg;
+        TextBox tekst;
         public MinaOmaVorm()
         {
             Height = 600;
@@ -34,12 +36,26 @@ namespace WindowsFormsTARpv21
             oksad.Nodes.Add(new TreeNode("Märkeruut-Checkbox"));
             oksad.Nodes.Add(new TreeNode("Radionupp-Radiobutton"));
             oksad.Nodes.Add(new TreeNode("Edenemisriba-ProgressBar"));
-
-
+            oksad.Nodes.Add(new TreeNode("Tekstkast-TextBox"));
+            oksad.Nodes.Add(new TreeNode("MinuVorm-MyForm"));
             puu.AfterSelect += Puu_AfterSelect;
             puu.Nodes.Add( oksad );
+            puu.DoubleClick += Puu_DoubleClick;
             this.Controls.Add(puu);
         }
+
+        private void Puu_DoubleClick(object sender, EventArgs e)
+        {
+            if (tekst.Enabled)
+            {
+                tekst.Enabled = false;
+            }
+            else
+            {
+                tekst.Enabled = true;
+            }
+        }
+
         private void Puu_AfterSelect(object sender , TreeViewEventArgs e)
         { 
             silt = new Label
@@ -166,7 +182,35 @@ namespace WindowsFormsTARpv21
                 aeg.Tick += Aeg_Tick;
                 this.Controls.Add(riba);
             }
+            else if( e.Node.Text== "Tekstkast-TextBox")
+            {
+                tekst = new TextBox
+                {
+                    Font = new Font("Arial", 19, FontStyle.Italic),
+                    Location = new Point(350, 400),
+                    Enabled = false
+                };
+                //tekst.DoubleClick += Tekst_DoubleClick;
+                this.Controls.Add(tekst);
+            }
+            else if(e.Node.Text=="MinuVorm-MyForm")
+            {
+                MinuVorm minu = new MinuVorm("Kuulame muusikat", "Vajuta siia","NHKIGH");
+                minu.ShowDialog();
+            }
         }
+        //bool t = false;
+        //private void Tekst_DoubleClick(object sender, EventArgs e)
+        //{
+        //    if (tekst.Enabled)
+        //    {
+        //        tekst.Enabled = false;
+        //    }
+        //    else 
+        //    {
+        //        tekst.Enabled = true;
+        //    }
+        //}
         private void Aeg_Tick(object sender, EventArgs e)
         {
             riba.PerformStep();
