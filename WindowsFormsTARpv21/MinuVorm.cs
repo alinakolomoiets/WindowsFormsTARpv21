@@ -71,7 +71,7 @@ namespace WindowsFormsTARpv21
 					using (var muusika = new SoundPlayer(@"..\..\hem_x.wav"))
 					{
 						muusika.Play();
-						MessageBox.Show("mängib: hem ", "Muusika"); ;
+						MessageBox.Show("mängib: hem ", "Muusika");
 			
 					}
 					rnup2.Checked = false;
