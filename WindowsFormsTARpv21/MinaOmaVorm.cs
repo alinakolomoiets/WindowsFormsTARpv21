@@ -195,22 +195,10 @@ namespace WindowsFormsTARpv21
             }
             else if(e.Node.Text=="MinuVorm-MyForm")
             {
-                MinuVorm minu = new MinuVorm("Kuulame muusikat", "Vajuta siia","NHKIGH");
+                MinuVorm minu = new MinuVorm("Kuulame muusikat?", "Muusika", "NHKIGH");
                 minu.ShowDialog();
             }
         }
-        //bool t = false;
-        //private void Tekst_DoubleClick(object sender, EventArgs e)
-        //{
-        //    if (tekst.Enabled)
-        //    {
-        //        tekst.Enabled = false;
-        //    }
-        //    else 
-        //    {
-        //        tekst.Enabled = true;
-        //    }
-        //}
         private void Aeg_Tick(object sender, EventArgs e)
         {
             riba.PerformStep();
