@@ -16,7 +16,7 @@ namespace WindowsFormsTARpv21
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MinaOmaVorm());
+			Application.Run(new MinaOmaVorm());
         }
     }
 }
